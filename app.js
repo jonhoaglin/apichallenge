@@ -55,9 +55,10 @@ app.get("/followers", function(req, res){
 
 app.get("/followers/:id", function(req, res){
   var id = req.params.id;
+  console.log('request recieved for /followers/'+id);
 
   var endMessage = getFollowers(res, id, 0);
-  console.log('endMessage: '+JSON.stringify(endMessage));
+  //console.log('endMessage: '+JSON.stringify(endMessage, null, 4));
   res.status(200).send({message:endMessage});
 });
 
