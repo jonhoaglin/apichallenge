@@ -2,7 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
-var request = require('sync-request')
+var request = require('sync-request');
+var auth = require('./token.js');
 
 const maxFollowers = 5;
 const maxDepth = 3;
@@ -13,7 +14,7 @@ var getFollowers = function(res, id, level){
   var response = request('GET', 'https://api.github.com/users/'+id+'/followers', {
     headers: {
       'User-Agent': 'jonhoaglin-apichallenge',
-      'Authorization': 'token 119857506b3220fb051bbd218a72b6d148aa9da0'
+      'Authorization': 'token '+auth.token
     },
   });
 
@@ -21,7 +22,7 @@ var getFollowers = function(res, id, level){
   var followers = [];
 
   for(var i=0; i<maxFollowers && i<flist.length; i++){
-    if(level < maxDepth){
+    if(level < maxDepth-1){
       followers.push(getFollowers(res, flist[i].login, level+1));
     }else{
       followers.push(flist[i].login);
