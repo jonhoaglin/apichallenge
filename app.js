@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
 var request = require('request')
+var followers = require('./followers.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,6 +19,8 @@ app.get("/followers", function(req, res){
 app.get("/followers/:id", function(req, res){
   var id = req.params.id;
 
+  followers(res, request, id);
+/*
   var options = {
     url: "https://api.github.com/users/"+id,
     headers: {
@@ -30,6 +33,7 @@ app.get("/followers/:id", function(req, res){
     }
     res.status(200).send({message: body});
   });
+*/
 });
 
 var server = app.listen(3000, function () {
