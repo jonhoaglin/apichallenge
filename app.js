@@ -2,56 +2,35 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
-var request = require('request')
+var request = require('sync-request')
 
-const maxFollowers = 1;
+const maxFollowers = 5;
 const maxDepth = 3;
 
 var getFollowers = function(res, id, level){
-  console.log('called getFollowers('+id+', '+level+')');
+  //console.log('called getFollowers('+id+', '+level+')');
 
-  var options = {
-    url: 'https://api.github.com/users/'+id+'/followers',
-    headers: {'User-Agent': 'jonhoaglin-apichallenge'}
-  };
+  var response = request('GET', 'https://api.github.com/users/'+id+'/followers', {
+    headers: {
+      'User-Agent': 'jonhoaglin-apichallenge',
+      'Authorization': 'token 119857506b3220fb051bbd218a72b6d148aa9da0'
+    },
+  });
 
-  if(level < maxDepth){
-    request.get(options, (error, response, body) => {
-      if(error) {
-        console.log('request to github returned an error: '+error);
-        res.status(400).send({message: 'must supply a valid github id'});
-      }
-      console.log('request to github successful.');
+  var flist = JSON.parse(response.getBody());
+  var followers = [];
 
-      var flist = JSON.parse(body);
-      var followers = [];
-      for(var i=0; i<maxFollowers && i<flist.length; i++){
-        followers.push(getFollowers(res, flist[i].login, level+1));
-      }
-
-      var message = {id:id, followers:followers}
-      console.log('message: '+JSON.stringify(message, null, 4));
-      return message;
-    });
-  }else{
-    request.get(options, (error, response, body) => {
-      if(error) {
-        console.log('request to github returned an error: '+error);
-        res.status(400).send({message: 'must supply a valid github id'});
-      }
-      console.log('request to github successful.');
-
-      var flist = JSON.parse(body);
-      var followers = [];
-      for(var i=0; i<maxFollowers && i<flist.length; i++){
-        followers.push(flist[i].login);
-      }
-
-      var message = {id:id, followers:followers}
-      console.log('message: '+JSON.stringify(message, null, 4));
-      return message;
-    });
+  for(var i=0; i<maxFollowers && i<flist.length; i++){
+    if(level < maxDepth){
+      followers.push(getFollowers(res, flist[i].login, level+1));
+    }else{
+      followers.push(flist[i].login);
+    }
   }
+
+  var message = {id:id, followers:followers}
+  //console.log('message: '+JSON.stringify(message, null, 4));
+  return message;
 };
 
 var factorial = function(number) {
