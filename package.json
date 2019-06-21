@@ -1,16 +1,18 @@
 {
   "name": "apichallenge",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "coding challenge to create an api endpoint",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jonathon Hoaglin",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "request": "^2.88.0",
     "sync-request": "^6.1.0"
+  }
+  "engines": {
+    "node": "10.16.0"
   }
 }
