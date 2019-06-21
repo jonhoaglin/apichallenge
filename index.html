@@ -13,6 +13,18 @@
       This project makes use of Express.js to simplify the API creation,
       and sync-request to pull information from the github API.</p>
 
+      <p>I am using basic authentication to increase the rate limit to the github API.
+      As tokens are automatically flagged and disabled when uploaded to github,
+      you will need to create a token.js file in the root folder and fill it with your
+      own token like so:</p>
+
+          <p>
+            <code>
+              var token = 'XXXXXXXXXXXXXXXXXXXXXXXX';<br />
+              exports.token = token;
+            </code>
+          </p>
+
       <h2>=== USAGE ===</h2>
 
       <p>There are 2 main methods

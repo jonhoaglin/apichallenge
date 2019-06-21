@@ -7,6 +7,14 @@ I chose Javascript/Node.js, as an opportunity to also learn Node.
 This project makes use of Express.js to simplify the API creation,
 and sync-request to pull information from the github API.
 
+I am using basic authentication to increase the rate limit to the github API.
+As tokens are automatically flagged and disabled when uploaded to github,
+you will need to create a token.js file in the root folder and fill it with your
+own token like so:
+
+    var token = 'XXXXXXXXXXXXXXXXXXXXXXXX';
+    exports.token = token;
+
 === USAGE ===
 
 There are 2 main methods
