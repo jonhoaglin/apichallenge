@@ -27,13 +27,15 @@
 
       <h2>=== USAGE ===</h2>
 
+      <p>To run, use command: <code>node app.js</code>
+
       <p>There are 2 main methods
         <ol>
           <li>/followers/:id<br />
             Will accept a github id/username, and return up to 5 followers,
             then recursively retrieves the followers for each, up to 3 levels deep.</li>
 
-        <li>/repos/:id  ---Under Construction---<br />
+        <li>/repos/:id<br />
             Will accept a github id/username, and return up to 3 repositories for that user,
             along with up to 3 stargazers for each.
             Also recurses to retrieve the repositories for each stargazer, up to 3 levels deep.</li>

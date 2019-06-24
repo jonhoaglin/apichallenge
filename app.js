@@ -12,7 +12,8 @@ var auth = require('./token.js');
 //Should not be set much higher, as response will slow down exponentially
 const maxDepth = 3;
 const maxFollowers = 5;
-const maxRepos = 3
+const maxRepos = 3;
+const maxGazers = 3;
 
 //Include main methods
 var getFollowers = require('./followers.js');
@@ -53,7 +54,7 @@ app.get('/repos/:id', function(req, res){
   console.log('request recieved for /repos/'+id);
 
   //Build response message
-  var endMessage = getRepos(request, auth.token, id, 0, maxRepos, maxDepth);
+  var endMessage = getRepos(request, auth.token, id, 0, maxRepos, maxGazers, maxDepth);
   //console.log('endMessage: '+JSON.stringify(endMessage, null, 4));
 
   res.status(200).send({message:endMessage});

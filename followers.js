@@ -6,7 +6,7 @@ var getFollowers = function(request, token, id, level, maxFollowers, maxDepth){
     headers: {
       'User-Agent': 'jonhoaglin-apichallenge',
       'Authorization': 'token '+token
-    },
+    }
   });
 
   //Parse response from JSON string to object
@@ -27,7 +27,7 @@ var getFollowers = function(request, token, id, level, maxFollowers, maxDepth){
   }
 
   //Build return message, before return so console.log can be used to debug
-  var message = {id:id, followers:followers}
+  var message = {githubId:id, followers:followers}
   //console.log('message: '+JSON.stringify(message, null, 4));
   return message;
 };

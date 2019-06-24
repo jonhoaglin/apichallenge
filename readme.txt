@@ -17,12 +17,13 @@ own token like so:
 
 === USAGE ===
 
+To run, use command: node app.js
+
 There are 2 main methods
   1. /followers/:id
       Will accept a github id/username, and return up to 5 followers,
       then recursively retrieves the followers for each, up to 3 levels deep.
 
- ---Under Construction---
   2. /repos/:id
       Will accept a github id/username, and return up to 3 repositories for that user,
       along with up to 3 stargazers for each.
