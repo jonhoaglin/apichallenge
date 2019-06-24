@@ -1,5 +1,6 @@
+//Secondary/dependent method, see below for main getRepos method
 var getGazers = function(request, token, id, repoName, level, maxRepos, maxGazers, maxDepth){
-  console.log('called getGazers('+id+', '+repoName+', '+level+')');
+  //console.log('called getGazers('+id+', '+repoName+', '+level+')');
 
   //Build GET request with custom header, and use sync-request to retrieve response
   var gresponse = request('GET', 'https://api.github.com/repos/'+id+'/'+repoName+'/stargazers', {
@@ -32,9 +33,9 @@ var getGazers = function(request, token, id, repoName, level, maxRepos, maxGazer
   return message;
 };
 
-//MAIN Function
+//MAIN method
 var getRepos = function(request, token, id, level, maxRepos, maxGazers, maxDepth){
-  console.log('called getRepos('+id+', '+level+')');
+  //console.log('called getRepos('+id+', '+level+')');
 
   //Build GET request with custom header, and use sync-request to retrieve response
   var response = request('GET', 'https://api.github.com/users/'+id+'/repos', {
