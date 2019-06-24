@@ -17,7 +17,8 @@ own token like so:
 
 === USAGE ===
 
-To run, use command: node app.js
+To run, first install dependencies with: npm install
+then use command: node app.js
 
 There are 2 main methods
   1. /followers/:id
